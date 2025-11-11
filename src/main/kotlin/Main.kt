@@ -4,15 +4,6 @@ import utils.readNextDouble
 import utils.readNextLine
 
 
-var hourlyPay = 0.0
-var sundayPay = 0.0
-var comForPeriod = 0.0
-var normalHours = 0.0
-var sundayHours = 0.0
-var payFreq = 0
-var name = null
-var taxPercentage = 0
-
 fun main() {
     val name = readNextLine("Please enter your name: ")
 
