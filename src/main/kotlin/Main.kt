@@ -1,8 +1,21 @@
 import utils.readNextDouble
 import utils.readNextInt
 import utils.readNextDouble
+import utils.readNextLine
+
+
+var hourlyPay = 0.0
+var sundayPay = 0.0
+var comForPeriod = 0.0
+var normalHours = 0.0
+var sundayHours = 0.0
+var payFreq = 0
+var name = null
+var taxPercentage = 0
 
 fun main() {
+    val name = readNextLine("Please enter your name: ")
+
     runMenu()
 }
 
@@ -43,24 +56,26 @@ fun runMenu() {
 }
 
 fun logHourlyPay(){
-    val hourlyPay = readNextDouble("What is your hourly pay?: ")
+    hourlyPay = readNextDouble("What is your hourly pay?: ")
 }
 
 fun logSundayPay(){
-    val sundayPay = readNextDouble("What is your pay for Sundays?: ")
+    sundayPay = readNextDouble("What is your pay for Sundays?: ")
 }
 
 fun commissionsTool(){
-    val comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
+    comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
 }
 
 fun logHours(){
-    val normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
-    val sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
+    normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
+    sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
 }
 
-fun paymentFrequency(){
-    val payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
+fun paymentFrequency() {
+    payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
+}
+
 
     val periods = when (payFreq) {
         1 -> 52
@@ -68,9 +83,13 @@ fun paymentFrequency(){
         3 -> 12
         else -> {
             println("Invalid frequency selected.")
-            return
         }
     }
+
+fun taxForPeriod() {
+    var yearlyPay = payFreq * ((hourlyPay * normalHours) + (sundayPay * sundayHours))
+
+
 }
 
 fun printPayslip(){
@@ -78,14 +97,19 @@ fun printPayslip(){
         > ---------------------------
         > |       Payslip           |
         > ---------------------------
+        > | $name                         |
+        > | Weekday Hours worked: $normalHours  |   Pay: ${normalHours * hourlyPay}                      |
+        > | Sunday Hours worked: $sundayHours   |   Sunday Pay: ${sundayHours * sundayPay}                     |
         > |                         |
-        > |                         |
-        > |                         |
-        > |                         |
-        > |                         |
+        > | Taxes                        |
         > |                         |
         > ---------------------------
         > |   0) Exit               | 
         > ---------------------------
         >""".trimMargin(">"))
+}
+
+fun exit() {
+    println("Exiting!")
+    exit()
 }
