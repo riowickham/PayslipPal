@@ -3,6 +3,8 @@ import utils.readNextInt
 import utils.readNextDouble
 import utils.readNextLine
 
+import models.Employee
+import models.Payslip
 
 fun main() {
     val name = readNextLine("Please enter your name: ")
@@ -64,23 +66,7 @@ fun logHours(){
 }
 
 fun paymentFrequency() {
-    payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
-}
-
-
-    val periods = when (payFreq) {
-        1 -> 52
-        2 -> 26
-        3 -> 12
-        else -> {
-            println("Invalid frequency selected.")
-        }
-    }
-
-fun taxForPeriod() {
-    var yearlyPay = payFreq * ((hourlyPay * normalHours) + (sundayPay * sundayHours))
-
-
+    employee.payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
 }
 
 fun printPayslip(){
