@@ -1,13 +1,12 @@
+import controllers.PayslipController
 import utils.readNextDouble
 import utils.readNextInt
-import utils.readNextDouble
 import utils.readNextLine
 
-import models.Employee
-import models.Payslip
+private val psController = PayslipController()
 
-fun main() {
-    val name = readNextLine("Please enter your name: ")
+fun main(custName: custName) {
+    val custName = readNextLine("Please enter your name: ")
 
     runMenu()
 }
@@ -49,24 +48,24 @@ fun runMenu() {
 }
 
 fun logHourlyPay(){
-    hourlyPay = readNextDouble("What is your hourly pay?: ")
+    val hourlyPay = readNextDouble("What is your hourly pay?: ")
 }
 
 fun logSundayPay(){
-    sundayPay = readNextDouble("What is your pay for Sundays?: ")
+    val sundayPay = readNextDouble("What is your pay for Sundays?: ")
 }
 
 fun commissionsTool(){
-    comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
+    val comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
 }
 
 fun logHours(){
-    normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
-    sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
+    val normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
+    val sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
 }
 
 fun paymentFrequency() {
-    employee.payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
+    val payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
 }
 
 fun printPayslip(){
@@ -74,7 +73,7 @@ fun printPayslip(){
         > ---------------------------
         > |       Payslip           |
         > ---------------------------
-        > | $name                         |
+        > | $custName                           |
         > | Weekday Hours worked: $normalHours  |   Pay: ${normalHours * hourlyPay}                      |
         > | Sunday Hours worked: $sundayHours   |   Sunday Pay: ${sundayHours * sundayPay}                     |
         > |                         |
