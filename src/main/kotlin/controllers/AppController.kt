@@ -1,2 +1,6 @@
 package controllers
 
+class AppController
+{
+
+}

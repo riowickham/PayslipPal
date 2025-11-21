@@ -2,17 +2,35 @@ import controllers.PayslipController
 import utils.readNextDouble
 import utils.readNextInt
 import utils.readNextLine
+import services.PayslipServices
+import models.Employee
+import models.Payslip
 
-private val psController = PayslipController()
+private val payslipController = PayslipController()
+private val payslipServices = PayslipServices()
 
-fun main(custName: custName) {
-    val custName = readNextLine("Please enter your name: ")
+private var employee: Employee? = null
+private var payslip: Payslip? = null
+
+fun main() {
+    val name = readNextLine("Please enter your name: ")
+
+    employee = Employee(
+        name = name,
+        payFreq = 0,
+        hourlyPay = 0.0,
+        sundayPay = 0.0,
+        taxPercentage = 20.0
+    )
+
+    payslip = Payslip(employee!!)
 
     runMenu()
 }
 
 fun mainMenu(): Int {
-    print("""
+    print(
+        """
         > ---------------------------
         > |       Payslip Pal       |
         > ---------------------------
@@ -27,7 +45,8 @@ fun mainMenu(): Int {
         > ---------------------------
         > |   0) Exit               |
         > ---------------------------
-        >""".trimMargin(">"))
+        >""".trimMargin(">")
+    )
     return readNextInt(" > ==>>")
 }
 
@@ -48,41 +67,33 @@ fun runMenu() {
 }
 
 fun logHourlyPay(){
-    val hourlyPay = readNextDouble("What is your hourly pay?: ")
+    employee?.hourlyPay = readNextDouble("What is your hourly pay?: ")
 }
 
 fun logSundayPay(){
-    val sundayPay = readNextDouble("What is your pay for Sundays?: ")
+    employee?.sundayPay = readNextDouble("What is your pay for Sundays?: ")
 }
 
 fun commissionsTool(){
-    val comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
+    payslip?.comForPeriod = readNextDouble("Please enter commissions gained for this pay period (0 for none): ")
 }
 
 fun logHours(){
-    val normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
-    val sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
+    payslip?.normalHours = readNextDouble("Please enter your hours worked for this period(excluding breaks): ")
+    payslip?.sundayHours = readNextDouble("Please enter your hours worked for Sunday(s): ")
 }
 
 fun paymentFrequency() {
-    val payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
+    employee?.payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
 }
 
 fun printPayslip(){
-    print("""
-        > ---------------------------
-        > |       Payslip           |
-        > ---------------------------
-        > | $custName                           |
-        > | Weekday Hours worked: $normalHours  |   Pay: ${normalHours * hourlyPay}                      |
-        > | Sunday Hours worked: $sundayHours   |   Sunday Pay: ${sundayHours * sundayPay}                     |
-        > |                         |
-        > | Taxes                        |
-        > |                         |
-        > ---------------------------
-        > |   0) Exit               | 
-        > ---------------------------
-        >""".trimMargin(">"))
+    if (employee == null || payslip == null) {
+        println("Please make an employee and log their hours.")
+        return
+    }
+
+    println(payslipController.printPayslip(employee!!, payslip!!))
 }
 
 fun exit() {

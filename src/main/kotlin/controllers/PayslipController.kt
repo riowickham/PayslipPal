@@ -8,6 +8,23 @@ class PayslipController {
     private val payslipService = PayslipServices()
 
     fun printPayslip(employee: Employee, payslip: Payslip): String {
-        return payslipService.printPayslip(employee, payslip)
+        payslipService.payslipCalculator(payslip)
+        return ("""
+        > ---------------------------
+        > |       Payslip           |
+        > --------------------------- 
+        > | ${employee.name}                          |
+        > | Weekday Hours worked: ${payslip.normalHours}  |
+        > | Sunday Hours worked: ${payslip.sundayHours}   |
+        > | Commission: ${payslip.comForPeriod}                     |
+        > |------------------------------|
+        > | Gross Pay: ${payslip.grossPay}                        |
+        > | PAYE ${employee.taxPercentage}: ${payslip.taxAmount}
+        > | Net Pay: ${payslip.netPay}
+        > | Annual Salary: ${payslipService.annualSalary(payslip)}
+        > ---------------------------
+        > |   0) Exit               | 
+        > ---------------------------
+        >""".trimMargin(">"))
     }
 }
