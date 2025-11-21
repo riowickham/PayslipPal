@@ -18,9 +18,9 @@ class PayslipServices {
     fun annualSalary(payslip: Payslip): Double {
         val employee = payslip.employee
         val periods = when (employee.payFreq) {
-            1.0 -> 52
-            2.0 -> 26
-            3.0 -> 12
+            1 -> 52
+            2 -> 26
+            3 -> 12
             else -> 0
         }
         return payslip.grossPay * periods
