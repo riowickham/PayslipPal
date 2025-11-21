@@ -98,5 +98,5 @@ fun printPayslip(){
 
 fun exit() {
     println("Exiting!")
-    exit()
+    return
 }
