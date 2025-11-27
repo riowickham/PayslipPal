@@ -1,0 +1,18 @@
+This File Is A Basic Demonstration Of How PayslipPal Works
+
+To begin, you will start by opening up the app and being greeted with a screen showing you a few different options to pick from
+
+you are firsly going to be prompted to enter your name
+
+1. "Log Hourly Pay", log hourly pay will allow you to log how much you make per hour of work
+2. "Log Sunday Pay", log the hourly pay that you will get on a sunday to ensure the most accurate calculations
+3. In the final commited stages of the code I narrowly missed it and forgot to make a new number
+4. "Payment Frequency", chose between
+      1. "(1) Weekly"
+      2. "(2) Biweekly"
+      3. "(3) Monthly"
+      These options will then calculate the tax you will be paying and your yearly income calculations
+5. "Employee ID" will ask you to enter your employeee id twice to confirm it is you
+6. "Create New Payslip" will get you to enter your employee id to confirm your previuous response was accurate, it will then take in your hours worked for calculations and thne finally commissions
+7. "View All Payslips" will use your primary key which is employeeId and search and print every payslip you have created under that employeee id
+0. "Exit" will close the code
