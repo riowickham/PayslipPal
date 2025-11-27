@@ -1,4 +1,5 @@
 import controllers.PayslipController
+import controllers.AppController
 import utils.readNextDouble
 import utils.readNextInt
 import utils.readNextLine
@@ -7,7 +8,6 @@ import models.Employee
 import models.Payslip
 
 private val payslipController = PayslipController()
-private val payslipServices = PayslipServices()
 
 private var employee: Employee? = null
 private var payslip: Payslip? = null
@@ -17,13 +17,12 @@ fun main() {
 
     employee = Employee(
         name = name,
+        employeeId = 0,
         payFreq = 0,
         hourlyPay = 0.0,
         sundayPay = 0.0,
         taxPercentage = 20.0
     )
-
-    payslip = Payslip(employee!!)
 
     runMenu()
 }
@@ -40,8 +39,9 @@ fun mainMenu(): Int {
         > |   3) Commission Tool    |
         > |   4) Log Hours for slip |
         > |   5) Payment Frequency  |
+        > |   6) Employee ID        |
         > ---------------------------
-        > |   6) Print Slip         |
+        > |   7) Print Slip         |
         > ---------------------------
         > |   0) Exit               |
         > ---------------------------
@@ -59,7 +59,8 @@ fun runMenu() {
             3 -> commissionsTool()
             4 -> logHours()
             5 -> paymentFrequency()
-            6 -> printPayslip()
+            6 -> employeeID()
+            7 -> printPayslip()
             0 -> exit()
             else -> println("!Invalid Option!")
         }
@@ -85,6 +86,11 @@ fun logHours(){
 
 fun paymentFrequency() {
     employee?.payFreq = readNextInt("Do you get paid (1) Weekly, (2) Biweekly, (3) Monthly:")
+}
+
+fun employeeID() {
+    employee?.employeeId = readNextInt("Please Enter Your Employee ID: ")
+    payslip?.employeeId = readNextInt("Confirm Employee ID Again: ")
 }
 
 fun printPayslip(){
