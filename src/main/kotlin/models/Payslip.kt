@@ -1,6 +1,7 @@
 package models
 
 data class Payslip(
+    var employeeId: Int,
     val employee: Employee,
     var normalHours: Double = 0.0,
     var sundayHours: Double = 0.0,
